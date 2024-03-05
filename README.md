@@ -2,17 +2,17 @@
 ![AirBnB Clone image](https://github.com/eveshogweyore/AirBnB_clone/blob/main/airbnb_clone_pic.png)
 ## Project Description
 
-This is our first full web app: a clone of the AirBnB website (at https://www.airbnb.com).
+This is our first full web app: a clone of [the AirBnB website](https://www.airbnb.com).
 
-It's a base for future projects:
+**It's a base for future projects:**
 - HTML/CSS templating
 - database storage
 - API
 - front-end integration, etc.
 
-We built/performed the following tools/tasks:
+***We built/performed the following tools/tasks:***
 - a command interpreter (aka., console)
-- a BaseModel
+- a ```BaseModel``` class
 - modules and packages
 - file storage abstractions
 - unit tests
