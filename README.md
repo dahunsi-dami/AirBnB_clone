@@ -1,5 +1,5 @@
 # AirBnB Clone - The console
-
+(https://github.com/eveshogweyore/AirBnB_clone/blob/main/airbnb_clone_pic.png)
 ## Project Description
 
 This is our first full web application: a clone of the AirBnB website (at https://www.airbnb.com).
@@ -74,9 +74,6 @@ $
 
 This project has the following classes:
 
-|  | BaseModel | SampleClass |
-| ------------- | ------------- |
-| Public instance attributes  | <sample attribute>  | <sample attribute |
-| Public instance methods  |  |  |
-| Public class attributes  |  |  |
-| Public class methods  |  |  |
+| Attributes                 | BaseModel                                              |
+| ----------------------|---------------------------------------------------------------|
+| `public instance`   | id   |
