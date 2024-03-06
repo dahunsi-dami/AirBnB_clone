@@ -8,7 +8,7 @@ from uuid import uuid4
 class BaseModel:
     """Defines common attributes/methods for other classes."""
 
-    def __init__(self, created_at=None, updated_at=None):
+    def __init__(self, *args, **kwargs):
         """
         Initializes public instance attributes.
 
@@ -17,9 +17,19 @@ class BaseModel:
             created_at: current datetime when instance's created.
             updated_at: also datetime & updated on obj change.
         """
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if len(kwargs) != 0:
+            if "__clas__" in kwargs:
+                del kwargs["__class__"]
+
+            for k, v in kwargs.items():
+                if k in ["updated_at", "created_at"]:
+                    v = datetime.fromisoformat(v)
+                setattr(self, k, v)
+
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Modifies custom string representation an object."""
