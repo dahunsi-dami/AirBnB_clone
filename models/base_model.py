@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """The base class `BaseModel`."""
 
-import copy
 from datetime import datetime
 from uuid import uuid4
 
@@ -32,7 +31,7 @@ class BaseModel:
 
     def to_dict(self):
         """returns dict w/ key val of instance attribute."""
-        cp_dict = copy.deepcopy(self.__dict__)
+        cp_dict = self.__dict__.copy()
         cp_dict["__class__"] = self.__class__.__name__
         cp_dict["created_at"] = self.created_at.isoformat()
         cp_dict["updated_at"] = self.updated_at.isoformat()
