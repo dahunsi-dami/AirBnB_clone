@@ -22,14 +22,18 @@ class FileStorage:
     def save(self):
         """serializes __objects to JSON & save to __file_path."""
         with open(self.__class__.__file_path, 'w') as f:
-            json_str = json.dumps(self.__class__.__name__.__objects)
+            json_str = json.dumps(self.__dict__)
+            print(" ***** OBJECT'S DICT ***** ")
+            print(self.created_at)
             f.write(json_str)
 
     def reload(self):
         """deserializes json file to __objects."""
         try:
             with open(self.__class__.__file_path, 'r') as f:
-                if len(f.read()) > 0:
-                    self.__class__.__objects = json.loads(f.read())
+                f_content = f.read()
+                if len(f_content) > 0:
+                    self.__class__.__objects = json.loads(f_content)
+                # print(f"__objects = {self.__class__.__objects}")
         except FileNotFoundError:
             pass
