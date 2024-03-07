@@ -25,12 +25,11 @@ class BaseModel:
                 if k in ["updated_at", "created_at"]:
                     v = datetime.fromisoformat(v)
                 setattr(self, k, v)
-
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self.to_dict())
+            #storage.new(self.to_dict())
 
     def __str__(self):
         """Modifies custom string representation an object."""
@@ -39,6 +38,7 @@ class BaseModel:
     def save(self):
         """Updates `updated_at` w/ current datetime."""
         self.updated_at = datetime.now()
+        storage.new(self.to_dict())
         storage.save()
 
     def to_dict(self):
