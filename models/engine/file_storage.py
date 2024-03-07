@@ -16,13 +16,15 @@ class FileStorage:
 
     def new(self, obj):
         """sets obj in __objects with key `<obj class name>.id`."""
-        objkey = self.__class__.__name__ + "." + obj.id
-        self.__class__.__objects[objkey] = obj
+        print(obj)
+        # objkey = obj["__class__"] + "." + obj["id"]
+        # self.__class__.__objects[objkey] = obj
+        # print(self.__objects)
 
     def save(self):
         """serializes __objects to JSON & save to __file_path."""
         with open(self.__class__.__file_path, 'w') as f:
-            json_str = json.dumps(self.__class__.__name__.__objects)
+            json_str = json.dumps(self.__objects)
             f.write(json_str)
 
     def reload(self):
