@@ -30,7 +30,8 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            print(self.__dict__)
+            storage.new(self.__dict__)
 
     def __str__(self):
         """Modifies custom string representation an object."""
@@ -47,4 +48,5 @@ class BaseModel:
         cp_dict["__class__"] = self.__class__.__name__
         cp_dict["created_at"] = self.created_at.isoformat()
         cp_dict["updated_at"] = self.updated_at.isoformat()
+        # print(self.__dict__)
         return cp_dict
