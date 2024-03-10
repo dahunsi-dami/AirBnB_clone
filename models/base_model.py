@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from uuid import uuid4
-from . import storage
+from models import storage
 
 
 class BaseModel:
@@ -47,5 +47,4 @@ class BaseModel:
         cp_dict["__class__"] = self.__class__.__name__
         cp_dict["created_at"] = self.created_at.isoformat()
         cp_dict["updated_at"] = self.updated_at.isoformat()
-        # print(self.__dict__)
         return cp_dict
