@@ -5,6 +5,7 @@ from datetime import datetime
 from uuid import uuid4
 from . import storage
 
+
 class BaseModel:
     """Defines common attributes/methods for other classes."""
 
@@ -29,7 +30,6 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            #storage.new(self.to_dict())
 
     def __str__(self):
         """Modifies custom string representation an object."""
