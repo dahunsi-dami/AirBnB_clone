@@ -7,17 +7,10 @@ from models import storage
 
 
 class BaseModel:
-    """Defines common attributes/methods for other classes."""
+    """Defines common attributes and methods for other classes."""
 
     def __init__(self, *args, **kwargs):
-        """
-        Initializes public instance attributes.
-
-        Args:
-            id: assigns uuid on instance creation.
-            created_at: current datetime when instance's created.
-            updated_at: also datetime & updated on obj change.
-        """
+        """Initializes public instance attributes."""
         if len(kwargs) != 0:
             if "__class__" in kwargs:
                 del kwargs["__class__"]
@@ -36,13 +29,13 @@ class BaseModel:
         return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
-        """Updates `updated_at` w/ current datetime."""
+        """Updates `updated_at` with current datetime."""
         self.updated_at = datetime.now()
         storage.new(self.to_dict())
         storage.save()
 
     def to_dict(self):
-        """returns dict w/ key val of instance attribute."""
+        """Returns dict with keys and values of instance attribute."""
         cp_dict = self.__dict__.copy()
         cp_dict["__class__"] = self.__class__.__name__
         cp_dict["created_at"] = self.created_at.isoformat()
