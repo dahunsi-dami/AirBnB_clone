@@ -12,28 +12,27 @@ class FileStorage:
 
     def all(self):
         """returns dictionary `__objects`."""
-        return self.__class__.__objects
+        return self.__objects
 
     def new(self, obj):
         """sets obj in __objects with key `<obj class name>.id`."""
-        print(obj)
         objkey = obj["__class__"] + "." + obj["id"]
-        self.__class__.__objects[objkey] = obj
-        # print(self.__objects)
+        self.__objects[objkey] = obj
 
     def save(self):
         """serializes __objects to JSON & save to __file_path."""
-        with open(self.__class__.__file_path, 'w') as f:
-            json_str = json.dumps(self.__class__.__objects)
+        with open(self.__file_path, 'w') as f:
+            json_str = json.dumps(self.__objects)
             f.write(json_str)
 
     def reload(self):
         """deserializes json file to __objects."""
         try:
-            with open(self.__class__.__file_path, 'r') as f:
-                f_content = f.read()
-                if len(f_content) > 0:
-                    self.__class__.__objects = json.loads(f_content)
-                # print(f"__objects = {self.__class__.__objects}")
+            with open(self.__file_path, 'r') as f:
+                des_dict = json.load(f)
+                for k, v in des_dict.items():
+                    from models.base_model import BaseModel
+                    agpas = BaseModel(**v)
+                    self.__objects[k] = agpas.to_dict()
         except FileNotFoundError:
             pass
