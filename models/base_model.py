@@ -25,17 +25,20 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def __str__(self):
-        """Modifies custom string representation an object."""
+        """Modifies custom string representation an object.
+        """
         return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
-        """Updates `updated_at` with current datetime."""
+        """Updates `updated_at` with current datetime.
+        """
         self.updated_at = datetime.now()
         storage.new(self.to_dict())
         storage.save()
 
     def to_dict(self):
-        """Returns dict with keys and values of instance attribute."""
+        """Returns dict with keys and values of instance attribute.
+        """
         cp_dict = self.__dict__.copy()
         cp_dict["__class__"] = self.__class__.__name__
         cp_dict["created_at"] = self.created_at.isoformat()
