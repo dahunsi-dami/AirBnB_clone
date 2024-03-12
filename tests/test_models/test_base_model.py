@@ -34,3 +34,9 @@ class TestBaseModel(unittest.TestCase):
         """Test `updated_at` instance variable."""
         self.assertTrue(hasattr(self.m1, "updated_at"))
         self.assertIsInstance(self.m1.updated_at, datetime.datetime)
+
+    def test_save(self):
+        """Test save() method."""
+        self.m1.name = "Peter"
+        self.m1.save()
+        self.assertIn("name", self.m1.to_dict())
