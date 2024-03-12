@@ -40,3 +40,12 @@ class TestBaseModel(unittest.TestCase):
         self.m1.name = "Peter"
         self.m1.save()
         self.assertIn("name", self.m1.to_dict())
+
+    def test___str__(self):
+        """Test __str__ magic method."""
+        c_n = self.m1.__class__.__name__ # c_n <--> class name
+        self.assertIn(f"[{c_n}] ({self.m1.id})", str(self.m1))
+        self.assertIn(c_n, str(self.m1))
+        self.assertIn(self.m1.id, str(self.m1))
+        self.assertIn("created_at", str(self.m1))
+        self.assertIn("updated_at", str(self.m1))
