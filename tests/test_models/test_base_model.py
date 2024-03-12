@@ -43,7 +43,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test___str__(self):
         """Test __str__ magic method."""
-        c_n = self.m1.__class__.__name__ # c_n <--> class name
+        c_n = self.m1.__class__.__name__  # c_n <--> class name
         self.assertIn(f"[{c_n}] ({self.m1.id})", str(self.m1))
         self.assertIn(c_n, str(self.m1))
         self.assertIn(self.m1.id, str(self.m1))
