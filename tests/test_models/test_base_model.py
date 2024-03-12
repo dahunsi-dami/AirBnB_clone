@@ -53,9 +53,17 @@ class TestBaseModel(unittest.TestCase):
     def test_to_dict(self):
         """Test to_dict() method."""
         self.assertIsInstance(self.m1.to_dict(), dict)
+
         self.assertIn("__class__", self.m1.to_dict())
         self.assertIn("id", self.m1.to_dict())
         self.assertIn("created_at", self.m1.to_dict())
         self.assertIn("updated_at", self.m1.to_dict())
+
         self.m1.name = "Peter"
         self.assertIn("name", self.m1.to_dict())
+
+        created_at = self.m1.created_at.isoformat()
+        updated_at = self.m1.updated_at.isoformat()
+
+        self.assertEqual(created_at, self.m1.to_dict()["created_at"])
+        self.assertEqual(updated_at, self.m1.to_dict()["updated_at"])
