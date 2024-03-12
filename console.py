@@ -10,7 +10,8 @@ class HBNBCommand(cmd.Cmd):
     """The command processor's model."""
 
     prompt = '(hbnb) '
-    model_coll = ["BaseModel", "User"]
+    model_coll = ["BaseModel", "User", "State", "City", "Amenity",
+                  "Place", "Review"]
 
     def do_EOF(self, line):
         """Command to exit interpreter when EOF is encountered."""

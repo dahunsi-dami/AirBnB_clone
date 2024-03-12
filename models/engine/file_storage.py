@@ -37,8 +37,16 @@ class FileStorage:
 
                 for k, v in des_dict.items():
                     from models.base_model import BaseModel
+                    from models.state import State
                     from models.user import User
-                    model_dict = {"BaseModel": BaseModel, "User": User}
+                    from models.city import City
+                    from models.amenity import Amenity
+                    from models.place import Place
+                    from models.review import Review
+                    model_dict = {"BaseModel": BaseModel, "State": State,
+                                  "User": User, "City": City,
+                                  "Amenity": Amenity,
+                                  "Place": Place, "Review": Review}
                     obj_inst = model_dict[v['__class__']](**v)
                     self.__objects[k] = obj_inst
         except FileNotFoundError:
