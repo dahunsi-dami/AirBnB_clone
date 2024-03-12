@@ -4,6 +4,12 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -28,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """Creates instance of BaseModel, saves to JSON, prints id."""
         if line in self.model_coll:
-            cinst = BaseModel()
+            cinst = eval(line)()
             scinst = cinst.save()
             print(cinst.id)
         elif line == "":
