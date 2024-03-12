@@ -85,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             coll_obj = storage.all()
             list_obj = [str(v) for k, v in coll_obj.items()
-                        if "BaseModel" == v.__class__.__name__]
+                        if line == v.__class__.__name__]
             print(list_obj)
 
     def do_update(self, line):
