@@ -16,7 +16,7 @@ class FileStorage:
 
     def new(self, obj):
         """sets obj in __objects with key `<obj class name>.id`."""
-        #objkey = obj["__class__"] + "." + obj["id"]
+        # objkey = obj["__class__"] + "." + obj["id"]
         objkey = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[objkey] = obj
 
@@ -38,7 +38,9 @@ class FileStorage:
 
                 for k, v in des_dict.items():
                     from models.base_model import BaseModel
-                    obj_inst = BaseModel(**v)
+                    from models.user import User
+                    model_dict = {"BaseModel": BaseModel, "User": User}
+                    obj_inst = model_dict[v['__class__']](**v)
                     self.__objects[k] = obj_inst
         except FileNotFoundError:
             pass

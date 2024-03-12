@@ -10,6 +10,7 @@ class HBNBCommand(cmd.Cmd):
     """The command processor's model."""
 
     prompt = '(hbnb) '
+    model_coll = ["BaseModel", "User"]
 
     def do_EOF(self, line):
         """Command to exit interpreter when EOF is encountered."""
@@ -25,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Creates instance of BaseModel, saves to JSON, prints id."""
-        if line == "BaseModel":
+        if line in self.model_coll:
             cinst = BaseModel()
             scinst = cinst.save()
             print(cinst.id)
@@ -40,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(args) == 0:
             print(f"** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in self.model_coll:
             print(f"** class doesn't exist **")
         elif len(args) == 1:
             print(f"** instance id missing **")
@@ -55,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(args) == 0:
             print(f"** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in self.model_coll:
             print(f"** class doesn't exist **")
         elif len(args) == 1:
             print(f"** instance id missing **")
@@ -72,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
             list_obj.append(str(v))
         if len(line) == 0:
             print("{}".format(list_obj))
-        elif line != "BaseModel":
+        elif line not in self.model_coll:
             print(f"** class doesn't exist **")
         else:
             coll_obj = storage.all()
@@ -86,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(args) == 0:
             print(f"** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in self.model_coll:
             print(f"** class doesn't exist **")
         elif len(args) == 1:
             print(f"** instance id missing **")
