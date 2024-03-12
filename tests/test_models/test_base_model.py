@@ -40,6 +40,12 @@ class TestBaseModel(unittest.TestCase):
         self.m1.name = "Peter"
         self.m1.save()
         self.assertIn("name", self.m1.to_dict())
+        
+        self.m1.my_number = 12345
+        self.m1.save()
+        self.assertIn("my_number", self.m1.to_dict())
+
+        self.assertEqual(self.m1.save(), None)
 
     def test___str__(self):
         """Test __str__ magic method."""
