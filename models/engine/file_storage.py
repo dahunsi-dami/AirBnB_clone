@@ -16,14 +16,17 @@ class FileStorage:
 
     def new(self, obj):
         """sets obj in __objects with key `<obj class name>.id`."""
-        objkey = obj["__class__"] + "." + obj["id"]
+        #objkey = obj["__class__"] + "." + obj["id"]
+        objkey = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[objkey] = obj
 
     def save(self):
         """serializes __objects to JSON & save to __file_path."""
         mobj = {}
+
         for k, v in self.__objects.items():
-            mobj[k] = v
+            mobj[k] = v.to_dict()
+
         with open(self.__file_path, 'w') as f:
             json.dump(mobj, f)
 
@@ -32,19 +35,10 @@ class FileStorage:
         try:
             with open(self.__file_path, 'r') as f:
                 des_dict = json.load(f)
+
                 for k, v in des_dict.items():
-                    """
                     from models.base_model import BaseModel
-                    cls_nm, obj_id = k.split('.')
-                    agpas = BaseModel(**v)
-                    self.__objects[k] = agpas
-                    print(f"Self.__objects is {self.__objects.__str__()}")
-                    """
-                    from models.base_model import BaseModel
-                    # cls_nm, obj_id = k.split('.')
-                    # obj_build = eval(cls_nm)
                     obj_inst = BaseModel(**v)
-                    self.__objects[k] = obj_inst.to_dict()
-                    # print(f"Self.__objects is {self.__objects}")
+                    self.__objects[k] = obj_inst
         except FileNotFoundError:
             pass
