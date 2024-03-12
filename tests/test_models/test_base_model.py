@@ -49,3 +49,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn(self.m1.id, str(self.m1))
         self.assertIn("created_at", str(self.m1))
         self.assertIn("updated_at", str(self.m1))
+
+    def test_to_dict(self):
+        """Test to_dict() method."""
+        self.assertIsInstance(self.m1.to_dict(), dict)
+        self.assertIn("__class__", self.m1.to_dict())
+        self.assertIn("id", self.m1.to_dict())
+        self.assertIn("created_at", self.m1.to_dict())
+        self.assertIn("updated_at", self.m1.to_dict())
+        self.m1.name = "Peter"
+        self.assertIn("name", self.m1.to_dict())
